@@ -77,8 +77,18 @@ const getAllUser = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  try {
+    res.cookie("token", "", { maxAge: "1" });
+    return res.status(200).json({ message: "User Logout Successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   signup,
   signin,
   getAllUser,
+  logout,
 };
